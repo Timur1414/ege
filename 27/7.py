@@ -26,3 +26,27 @@ with open('', 'r') as f:
         left -= arr[i]
         index = (index + 1) % n
     print(max(res) - min(res))
+
+
+"""
+другая задача
+"""
+
+
+with open('', 'r') as f:
+    n = int(f.readline())
+    arr = [int(i) for i in f]
+    left = sum(arr[n // 2:])
+    right = sum(arr[:n // 2])
+    res = 10 ** 10
+    summa = 0
+    for i in range(n):
+        dist = min(i, n - i)
+        summa += dist * arr[i]
+    res = summa
+    for center in range(1, n):
+        right += arr[(center + n // 2 - 1) % n] - arr[center - 1]
+        left += ar[center - 1] - arr[(center + n // 2 - 1) % n]
+        summa += left - right
+        res = min(res, summa)
+    print(res)
